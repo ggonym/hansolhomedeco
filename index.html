@@ -38,7 +38,7 @@
     <!-----비주얼 영역----->
         <section class="visual">
             <h2 class="hide">광고영역</h2>
-                <!-- 숨겨진 영역에서는 전문용어보다는 사용자가 화면 낭독기를 통하여
+                <!-- 숨겨진 영역에서 전문용어보다는 사용자가 화면 낭독기를 통하여
                 어느영역인지 알기 쉽게 이해 하기 쉬운 한글로 쓰기-->
                 <!-----슬라이드 영역 코딩 할때는 제어 버튼 먼저 코딩
                     좌우 버튼, 정지 시작 버튼 등등 다음 마지막에 컨텐츠 넣기
@@ -48,25 +48,41 @@
                     <div class="control">
                         <div>
                             <div>
-                                <a href="#a" class="play">시작</a>
+                                <a href="#a" class="play on">시작</a>
                                 <a href="#a" class="pause">일시정지</a>
                             </div>
                             <ul>
-                                <li><a href="#a">한솔홈데코 비전</a></li>
+                                <li class="on"><a href="#a">한솔홈데코 비전</a></li>
                                 <li><a href="#a">xxx 신상품</a></li>
                                 <li><a href="#a">설명텍스트3</a></li>
                                 <li><a href="#a">설명텍스트4</a></li>
-                                <li><a href="#a">설명텍스트5</a></li><!--빈링크에는 설명글 넣어주기 웹 접근성을 위해.-->
+                                <li><a href="#a">설명텍스트5</a></li>                               
+                                <!--빈링크에는 설명글 넣어주기 웹 접근성을 위해.-->
                             </ul>  
                         </div>  
                     </div>
-                    <div class="con">
-                        <div class="slide">
-                            가구소재에서<br>
-                            인테리어자재까지
-                            <p>한솔홈데코 현리하고 행복한 공간을 만들어 갑니다.</p>
-                        </div>
+                    <div class="con">                        
+                            <div class="slide">
+                               <div class="txt">
+                                가구소재에서<br>
+                                인테리어자재까지
+                                <p>한솔홈데코 현리하고 행복한 공간을 만들어 갑니다.</p>
+                              </div>
+                        </div>    
                     </div>
+        </section>
+
+<!-------------product------------------>
+        <section class="product">
+            <h2 class="hide">제품정보</h2>
+                <ul>
+                    <li><a href="#a">바닥재</a></li>
+                    <li><a href="#a">벽면재</a></li>
+                    <li><a href="#a">도어재</a></li>
+                    <li><a href="#a">몰딩재</a></li>
+                    <li><a href="#a">시트재</a></li>
+                    <li><a href="#a">가구재</a></li>
+                </ul>
         </section>
 </body>
 </html>
