@@ -1,20 +1,27 @@
+/*20210324 포토샵파일 없이 사이트 만들기 준비하기.메인페이지 헤더영역 제작하기 html5+css3 */
+
+
+body{min-width: 1280px;}
+
+
 /*-----헤더영역-----*/
-header{height:81px; text-align: center;}
+header{position:relative; height:81px; text-align: center;}
 header h1{ position: absolute; left: 50px; top: 0; padding: 14px 0 0;}
  header h1 a{display:block; width: 110px; height: 48px; color: transparent;
     background: url(../images/sp_com.png) no-repeat -300px 0;
 }
 /*
-스트라이트기법으로 넣을때 여백도 생각해서 좌표 넣어줘...
+스프라이트기법으로 넣을때 여백도 생각해서 좌표 넣어줘...
 클릭이 가능한 꼭 a요소에 너비, 높이값 넣어주기, 
 텍스트가 필요없을때는 color:transparent 투명컬러로 바꾸기  
 IR 기법은 이미지 대체 텍스트를 제공하기 위한 CSS 기법으로 
 다양한 CSS기법을 사용하여 이미지 대체 텍스트를 제공할 수 있습니다.
 
-이미지 스프라이트 기법이란 여러개의 이미지를 따로 두고 코딩하는게 아니라 하나의 png 파일에 모아서 코딩하는 방식입니다.
-여러 이미지파일을 일일히 부르는것이 아니라, 한 이미지파일로 통합한 후 Background로 Position을 잡아주어 한 이 미지만 로드되게 함으로서 트래픽을 절약하고 HTTP 요청횟수를 줄여 빠른 웹 브라우징을 가능하게 해줍니다.
-이미지 각각을 별도의 파일로 추가하는 대신, 이미지를 하나의 파일로 만들어서 포함하면 HTTP 요청 수가 줄기 때문에 메모리와 네트워크 사용량 측면에서 효율적입니다.
-이미지 수정이나 관리가 간편합니다.
+이미지 스프라이트 기법이란 여러개의 이미지를 따로 두고 코딩하는게 아닌 하나의 png 파일에 모아서 코딩하는 방식입니다.
+여러 이미지파일을 일일히 부르는것이 아니라, 한 이미지파일로 통합한 후 Background로 Position을 잡아주어 한 이미지만 로드되게 함으로써
+트래픽을 절약하고 HTTP 요청횟수를 줄여 빠른 웹 브라우징을 가능하게 해줍니다.
+이미지 각각을 별도의 파일로 추가하는 대신, 이미지를 하나의 파일로 만들어서 포함하면 HTTP 요청 수가 줄기 때문에 메모리와 네트워크 
+사용량 측면에서 효율적입니다. 이미지 수정이나 관리가 간편합니다.
 웹 접근성을 준수하기 위해서 IR효과를 설정해야 합니다.
 
 불릿은 사용하기 힘들다 주로 아이콘 많이 사용
@@ -95,20 +102,53 @@ header .spot li:last-child a{padding-right: 0;}
 그래서 이부분에 너비값 width:100% 줘야 display:inline-block이 먹힘 */
 .visual .control > div {display: inline-block; position: relative; padding: 0 45px 0 0; }
 /*display:inline-block 가운데 정렬*/
+
 .visual .control > div > div { position: absolute; right: 0;}
-.visual .control ul,
-.visual .control li {display: inline-block;}
-.visual .control li a {display: block; width: 50px; height: 3px; background: rgba(255, 255, 255, 0.5);
+.visual .control > div > div a{
+    overflow:hidden; display: inline-block; margin:0 0 0 7px;width: 8px; height: 9px;
+    background: url(../images/sp_com.png) no-repeat; opacity: 0.5;
+} /*너비값 때문에 텍스트가 옆으로 삐져나오니까 오버플로우 히든줘서  숨기기면 박스 정렬된다*/
+.visual .control > div > div a.on {opacity: 1;}/*<------------------opacity 1이 안먹힘*/
+
+.visual .control > div > div a.play {background-position: -108px -72px;}
+.visual .control > div > div a.pause {background-position: -108px -60px;}
+.visual .control ul{position:relative; top:-7px; font-size: 0; display: inline-block;}
+.visual .control li {display: inline-block; padding:0 3px;} 
+/*디스플레이 인라인 블럭 여백 없애는 방법
+ul>li 한줄 처리하기<li></li><li></li>, ul에 font-size:0 주기
+*/
+
+/*활성화 백그라운드 컬러 클래스 on이 왜 안먹힐까?*/
+
+.visual .control li.on a{background-color: #fff;}
+
+.visual .control li a {display: block; width: 50px; height: 3px; background: rgba(255  , 255, 255, 0.5);
     border: none;
 }
 
 .visual .control a{color: transparent;}
 /*패딩은 무조건 양쪽으로 나눠서 주기*/
 
-.visual .control a {border: 1px solid red;}
+
 
 
 .visual .con > div {height: 640px;}
-.visual .con .slide {background: url(../images/bg_main00.jpg) no-repeat center;}
+.visual .con .slide {
+    background: url(../images/bg_main00.jpg) no-repeat center; color: #fff; font-size: 32px; 
+    line-height: 46px;
+
+}
+
+.visual .con .slide p{
+    padding: 19px 0 0; font-size: 20px;
+}
+
+.visual .con .slide .txt{position: absolute; left: 50%; top: 175px;}
+/*슬라이드 영역 텍스트 left50% 주면
+텍스트가 유동적으로 움직인다*/
 
 
+/*64*52* #001829/
+/*--------product------*/
+.product a {color:#001829; font-size: 15px; }
+.product a:hover{color:#2d5b79;}
