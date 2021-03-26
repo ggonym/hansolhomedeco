@@ -1,153 +1,291 @@
-body { min-width: 1280px;}
-header { position: relative;height: 81px; text-align: center;}
-header h1 { position: absolute; left:50px; top: 0; padding: 14px 0 0;}
-header h1 a{ display: block;width: 110px; height: 48px; color: transparent; background: url(../images/sp_com.png) no-repeat -300px 0;}
-header .lnb li { display: inline-block;}
-header .lnb li a {display: block; height: 81px; padding: 0 35px; font-size: 17px; color: #333; line-height: 81px;}
-header .lnb li a:hover { color: #2d5b79; font-weight: bold;}
-header .lnb li a span { position: relative;}
-header .lnb li a:hover span:after { content: ""; display: block; position: absolute; left: 0; bottom:-9px;  width: 100%; height: 1px; background: #2d5b79;}
-header .spot { position: absolute; right:50px; top: 0;}
-header .spot li { position: relative; float: left;}
-header .spot li:after { content: ""; position: absolute; left: 0; top: 50%; width: 1px;height: 7px;  background: #ccc; transform: translateY(-50%);}
-header .spot li:first-child:after { display: none;}
-header .spot li a{ display: block; height: 81px; padding: 0 10px; line-height: 81px;}
-header .spot li:last-child a { padding-right:0; }
+/*20210324 포토샵파일 없이 사이트 만들기 준비하기.메인페이지 헤더영역 제작하기 html5+css3 */
 
-.visual { position: relative; padding: 0 50px;}
-.visual .con > div { height: 640px;}
-.visual .con .slide { background: url(../images/bg_main01.jpg) no-repeat center; color: #fff; font-size: 32px; line-height: 46px;}
-.visual .con .slide p { padding: 19px 0 0; font-size: 20px; line-height: 100%;}
-.visual .con .slide .txt { position: absolute; left: 50%; top: 175px;}
 
-.product a { display: block;color: #001829; font-size: 15px;}
-.product a:hover { color: #2d5b79; font-weight: bold;}
-.product a:before { content:""; display: block; margin: 0 0 26px; width: 64px; height: 52px; background:url(../images/sp_com.png) no-repeat;}
-.product ul { padding: 46px 0 41px; text-align: center; font-size: 0;}
-.product li { display: inline-block; padding: 0 55px; text-align: center;}
-.product li:nth-child(1) a:before { background-position:-3px -118px;}
-.product li:nth-child(2) a:before { background-position:-75px -118px;}
-.product li:nth-child(3) a:before { background-position:-148px -118px;}
-.product li:nth-child(4) a:before { background-position:-219px -118px;}
-.product li:nth-child(5) a:before { background-position:-292px -118px;}
-.product li:nth-child(6) a:before { background-position:-364px -118px;}
-.product li:nth-child(1) a:hover:before { background-position:-3px -184px;}
-.product li:nth-child(2) a:hover:before { background-position:-75px -184px;}
-.product li:nth-child(3) a:hover:before { background-position:-148px -184px;}
-.product li:nth-child(4) a:hover:before { background-position:-219px -184px;}
-.product li:nth-child(5) a:hover:before { background-position:-292px -184px;}
-.product li:nth-child(6) a:hover:before { background-position:-364px -184px;}
+body{min-width: 1280px;}
+
+
+/*-----헤더영역-----*/
+header{position:relative; height:81px; text-align: center;}
+header h1{ position: absolute; left: 50px; top: 0; padding: 14px 0 0;}
+ header h1 a{display:block; width: 110px; height: 48px; color: transparent;
+    background: url(../images/sp_com.png) no-repeat -300px 0;
+}
+/*
+스프라이트기법으로 넣을때 여백도 생각해서 좌표 넣어줘...
+클릭이 가능한 꼭 a요소에 너비, 높이값 넣어주기, 
+텍스트가 필요없을때는 color:transparent 투명컬러로 바꾸기  
+IR 기법은 이미지 대체 텍스트를 제공하기 위한 CSS 기법으로 
+다양한 CSS기법을 사용하여 이미지 대체 텍스트를 제공할 수 있습니다.
+
+이미지 스프라이트 기법이란 여러개의 이미지를 따로 두고 코딩하는게 아닌 하나의 png 파일에 모아서 코딩하는 방식입니다.
+여러 이미지파일을 일일히 부르는것이 아니라, 한 이미지파일로 통합한 후 Background로 Position을 잡아주어 한 이미지만 로드되게 함으로써
+트래픽을 절약하고 HTTP 요청횟수를 줄여 빠른 웹 브라우징을 가능하게 해줍니다.
+이미지 각각을 별도의 파일로 추가하는 대신, 이미지를 하나의 파일로 만들어서 포함하면 HTTP 요청 수가 줄기 때문에 메모리와 네트워크 
+사용량 측면에서 효율적입니다. 이미지 수정이나 관리가 간편합니다.
+웹 접근성을 준수하기 위해서 IR효과를 설정해야 합니다.
+
+불릿은 사용하기 힘들다 주로 아이콘 많이 사용
+
+배경이미지좌표, 백그라운드 포지션으로 사용한다.
+
+유지보수가 편하다
+단점은이미지 사용 안할시  좌표에 대한 흔들림이 있으면 안돼서 그자리에 다른 이미지 대체?...
+*/
+
+header .lnb li {display: inline-block;} 
+/*text-align:center가 먹히지 않는다
+display:inline-block은 inline 속성을 가지고 있기 때문에 text-align:center가 적용이 된다
+단점: 여백이 존재한다. 스페이스한칸정도의여백
+css로 보완가능
+*/
+
+/*-----대메뉴-----*/
+/* 가운데 정렬은 여백 나누기 */
+header .lnb li {
+    padding: 0 0 0 x; display: inline-block;
+}
+
+header .lnb li a{ display: block; height: 81px; padding: 0 35px;
+    font-size: 17px; color:#333; line-height: 81px; 
+}
+/*클릭 영역, 터치영역 li는 클릭 영역이 아니기 때문에 사용성이 떨어지니
+ a요소에 클릭영역을 줘야 한다  a요소에 좌우상하 여백을 똑같은 크기로
+ 주는 것이 좋다 !!절대 li에 크기 주지 말구 a링크에 크기 줘야한다!!!!
+ width 값이나 좌우 패딩으로 값을 줘도 된다. 텍스트 사이즈가 비슷할 경우
+
+ 글씨크기는 포토샵 마키툴 높이사이즈와 거의 유사, 컬러 찾을때는 가장 진한곳
+ */
+ /* 세로 가운데 정렬 높이 크기만큼 줄간격을 주면 가운데 정렬 패딩값으로 하지마요 */
+
+ header .lnb li a:hover{ color: #2d5b79; font-weight: bold; 
+ }
+ /*텍스트 밑줄 만들기*/
+ header .lnb li a span{position:relative; }
+ header .lnb li a:hover span:after{
+     content: ""; position:absolute; width:100%; height: 1px; background: #2d5b79;
+     left: 0; bottom:-9px; display: block;
+ }
+ /*span 인라인 태그*/
+
+
+ /*-----오른쪽 관련서비스-----*/
+ header .spot{ position: absolute; right: 50px;top: 0;}
+ header .spot li{position:relative; float: left;}
+ header .spot li::after{content: "";position: absolute; left: 0; top:50%; 
+    width: 1px; height: 7px; background: #ccc; transform: translateY(-50%);}
+    /* 세로줄이 밑으로 내려간 이유는 자신의 크기 반만큼( top:50%) 내려가서약간
+    밑으로 쳐저 있다.
+     자기크기의 반만클 올리기 위해 7px의 반만큼 translateY으로 올린다
+     예전에는 margin-top:-3.5px사용했지만 그렇게 하지않고 transform의 속성을
+     이용 */
+header .spot li:first-child::after{display: none;}
+/*li:first-child::after로 넣어야한다. li::after:first-child로 넣으면 뒤에있는 첫벗째
+요소를 찾기 때문에  안됌 */    
+ header .spot li a{display: block; height: 81px; padding: 0 10px;
+    line-height: 81px;
+}
+header .spot li:last-child a{padding-right: 0;}
+
+
+/*----- 비주얼 영역 슬라이드-----*/
+.visual{ position:relative; padding: 0 50px;}
+
+/*슬라이드 공통 부분*/
+.slide .prev, .next {display: block; position: absolute; top: 50%;
+     width:25px; height:47px; transform:translateY(-50%); background: url(../images/sp_com.png) no-repeat ;
+     color: transparent;
+    }
+.slide .prev{left: 82px; background-position:-128px -60px;}
+.slide .next{right: 82px; background-position:-158px -60px;}    
+/*trnasform: translateY 자기자신크기의 -50% 만큼 위로 올라간다*/
+
+.slide .control {position: absolute; left: 0; bottom: 55px;  width:100%;text-align: center;}
+/*text-align:center가 안먹히는이유 absolute하면 block요소 가로사이즈가 초기화 된다.
+그래서 이부분에 너비값 width:100% 줘야 display:inline-block이 먹힘 */
+.visual .control > div {display: inline-block; position: relative; padding: 0 45px 0 0; }
+/*display:inline-block 가운데 정렬*/
+
+.slide .control > div > div { position: absolute; right: 0;}
+.slide .control > div > div a{
+    overflow:hidden; display: inline-block; margin:0 0 0 7px;width: 8px; height: 9px;
+    background: url(../images/sp_com.png) no-repeat; opacity: 0.5;
+} /*너비값 때문에 텍스트가 옆으로 삐져나오니까 오버플로우 히든줘서  숨기기면 박스 정렬된다*/
+.slide .control > div > div a.on {opacity: 1;}/*<------------------opacity 1이 안먹힘*/
+
+.slide .control > div > div a.play {background-position: -108px -72px;}
+.slide .control > div > div a.pause {background-position: -108px -60px;}
+.slide .control ul{position:relative; top:-7px; font-size: 0; display: inline-block;}
+.slide .control li {display: inline-block; padding:0 3px;} 
+/*디스플레이 인라인 블럭 여백 없애는 방법
+ul>li 한줄 처리하기<li></li><li></li>, ul에 font-size:0 주기
+*/
+
+/*활성화 백그라운드 컬러 클래스 on이 왜 안먹힐까?*/
+
+.slide .control li.on a{background-color: #fff;}
+
+.slide .control li a {display: block; width: 50px; height: 3px; background: rgba(255  , 255, 255, 0.5);
+    border: none;
+}
+
+.slide .control a{color: transparent;}
+/*패딩은 무조건 양쪽으로 나눠서 주기*/
+
+
+
+
+.visual .con > div {height: 640px;}
+.visual .con .slide {
+    background: url(../images/bg_main00.jpg) no-repeat center; color: #fff; font-size: 32px; 
+    line-height: 46px;
+
+}
+
+.visual .con .slide p{
+    padding: 19px 0 0; font-size: 20px;
+}
+
+.visual .con .slide .txt{position: absolute; left: 50%; top: 175px;}
+/*슬라이드 영역 텍스트 left50% 주면
+텍스트가 유동적으로 움직인다*/
+
+
+/*64*52* #001829/
+/*--------product------*/
+
+.product a {display:block; color:#001829; font-size: 15px; }
+/*a에 display: block 주면 너비값 100% 블록요소의 특징은 가로가 100%%*/
+.product a:hover{color:#2d5b79; font-weight: bold;}
+.product a:before{content: ""; margin:0 0 26px;background: url(../images/sp_com.png) no-repeat;
+    display: block; width: 64px; height: 52px;
+}
+.product ul {text-align: center; padding: 46px 0 41px; font-size: 0;}
+/*유동적으로 움직이고 추후 아이콘 추가에 대비해 margin:0 auto와, width값을주지않는다
+text-align:center를 주고
+가운데 정렬을 시키기 위해.product li{float:left} 지우고 display:inline-block을 준다
+*/
+.product li {display:inline-block;  text-align: center; padding: 0 55px;}
+.product li:nth-child(1) a:before{ 
+    background-position: -3px -118px;
+}
+.product li:nth-child(2) a:before{
+    background-position: -75px -118px;
+}
+.product li:nth-child(3) a:before{
+    background-position: -148px -118px;
+}
+.product li:nth-child(4) a:before{
+    background-position: -219px -118px;
+}
+.product li:nth-child(5) a:before{
+    background-position: -292px -118px;
+}
+.product li:nth-child(6) a:before{
+    background-position: -364px -118px;
+}
+
+.product li:nth-child(1) a:hover:before{ 
+    background-position: -3px -184px;
+}
+.product li:nth-child(2) a:hover:before{
+    background-position: -75px -184px;
+}
+.product li:nth-child(3) a:hover:before{
+    background-position: -148px -184px;
+}
+.product li:nth-child(4) a:hover:before{
+    background-position: -219px -184px;
+}
+.product li:nth-child(5) a:hover:before{
+    background-position: -292px -184px;
+}
+.product li:nth-child(6) a:hover:before{
+    background-position: -364px -184px;
+}
+
+
+
+/*-----------20210326 금요일 -------한솔 매거진 영역--------------------------*/
 
 .magazine {overflow: hidden; position: relative; height: 670px; background: #dfd9d1;} 
-.magazine h2 { padding: 50px 0 16px; font-size: 28px; color: #000; text-align: center; line-height: 100%;}
+/*왼쪽 슬라이드 박스가 넘쳐서 오버 플로우 힘든으로 감싸주기*/
+.magazine h2 { padding: 50px 0 16px; font-size: 28px; color: #000; 
+    text-align: center; line-height: 100%;}
 .magazine p { text-align: center; font-size: 14px; color: #3a3b36; line-height: 100%;} 
-.magazine .slide_box > div { position: absolute; left: 50%; top:150px; transform: translate(-50%,0);width: 1180px; height: 430px;}
+.magazine .slide_box > div { position: absolute; left: 50%; top:150px; 
+    transform: translate(-50%,0);width: 1180px; height: 430px;}
 .magazine .slide_box > div:nth-child(1) { margin-left:-1280px;}
 .magazine .slide_box > div:nth-child(3) { margin-left:1280px;}
-.magazine .slide_box .left { overflow: hidden; position: relative; float: left; width: 800px; height: 430px;}
+.magazine .slide_box .left { overflow: hidden; position: relative; 
+    float: left; width: 800px; height: 430px;}
+
+
 .magazine .slide_box .left img { width: 100%;}
-.magazine .slide_box .left div { position: absolute; right: 0; top: 0;   padding: 47px 20px 0; width: 200px; height: 100%; background: rgba(0,0,0,0.5); box-sizing: border-box;}
+.magazine .slide_box .left div { position: absolute; right: 0; top: 0; padding: 47px 20px 0; width: 200px; height: 100%; 
+    background: rgba(0,0,0,0.5); box-sizing: border-box;}
+    /*가로사이즈 패딩줘서 너비가 240px늘어나는데 이점을 보완하기 위해 box-sizing:border-box 하면
+    원래의 너비값 200px로 보여진다*/
 .magazine .slide_box .left div h3 { color: #fff; font-size:20px; line-height: 32px;}
+/* 줄 간격 여백도 위 아래로 나누기*/
 .magazine .slide_box .left div h3 span { display: block; font-weight: normal;}
-.magazine .slide_box .left div p { padding: 9px 0 0; font-size: 16px; color: #fff; text-align: left; line-height: 24px;}
-.magazine .slide_box .left div a { position: absolute; right: 20px; bottom: 40px; display: block;width:160px; height: 45px; border: 1px solid #fff; font-size: 16px; color: #fff; text-align: center; line-height: 45px;}
-.magazine .slide_box .right { float: right; padding: 20px 20px 0; width: 380px; height: 430px; background: #fff; box-sizing: border-box;}
+/*display:block 줘서 줄내림 해주기*/
+.magazine .slide_box .left div p { padding: 9px 0 0; font-size: 16px; color: #fff; 
+    text-align: left; line-height: 24px;}
+
+.magazine .slide_box .left div a { position: absolute; right: 20px; bottom: 40px; 
+    display: block;width:160px; height: 45px;     border: 1px solid #fff; 
+    font-size: 16px; color: #fff; text-align: center; line-height: 45px;}
+.magazine .slide_box .right { float: right; padding: 20px 20px 0; width: 380px; height: 430px; background: #fff;
+     box-sizing: border-box;}
 .magazine .slide_box .right li { padding: 0 0 20px;}
 .magazine .slide_box .right li a { display: table; width: 100%; }
-.magazine .slide_box .right li a div { display: table-cell; position: relative; padding: 0 0 0 100px; height: 82px; font-size: 16px; color: #333; vertical-align: middle;}
+/*width 값줘서 테이블 터치 영역 주기*/
+.magazine .slide_box .right li a div { display: table-cell; position: relative;
+     padding: 0 0 0 100px; height: 82px; font-size: 16px; color: #333; vertical-align: middle;}
+
+    /* display:table-cell*/
 .magazine .slide_box .right li a img { position: absolute; left: 0; top: 0;}
 .magazine .slide_box .right li a strong { display: block;font-size: 13px; color: #000;}
 .magazine.slide .control { bottom: 48px;}
+/* 매거진에 슬라이드 컨트롤 간격 전체를 바꿔주는게 아니라 그 부분만 바꿔주기*/
+
 .magazine.slide .prev { left: 50%; margin:26px 0 0 -640px;}
 .magazine.slide .next { right: 50%; margin:26px -640px 0 0;}
 
-.notice { padding: 0 0 100px;}
+/*이미지는 같으니 위치만 재설정
+마진으로 주면 위치 고정 항상 저자리에 있는다*/
+
+
+/*---------------배너영역--------------------------*/
+
+.notice { padding: 0 0 0 100px;}
+
 .notice > div { width: 1180px; margin: 0 auto; padding: 55px 0;}
 .notice > div .top > ul { float: left;}
-.notice > div .top > ul a { display: block; padding: 100px 0 0; width: 280px; height: 280px; text-align: center; box-sizing: border-box; font-size: 17px; font-weight: bold; color: #fff; transition: all 0.5s;}
-.notice > div .top > ul a span {display: block; position: relative; top:10px; opacity: 0;  padding: 20px 0 0; font-weight: normal; font-size: 14px; transition: all 0.5s;}
-.notice > div .top > ul a:hover { background: rgba(45,91,121,0.3);}
-.notice > div .top > ul a:hover span {  top: 0; opacity: 1;}
+.notice > div .top > ul li a{display: block; width: 280px; height: 280px;
+    text-align: center;box-sizing: border-box; padding:100px 0 0; font-size: 17px;
+    font-weight: bold; color: #fff;
+}
+
 .notice > div .top > ul li { float: left; padding: 0 20px 0 0;}
-.notice > div .top > ul li:nth-child(1) { background: url(../images/bg_key_link01.jpg) no-repeat;}
-.notice > div .top > ul li:nth-child(2) { background: url(../images/bg_key_link02.jpg) no-repeat;}
-.notice > div .top > ul li:nth-child(2) a { color: #000;}
-.notice > div .top > ul li:nth-child(3) { background: url(../images/bg_key_link03.jpg) no-repeat;}
-.notice > div .top > div { float: left; padding: 36px 20px 0; width: 280px; height: 280px; background: #f2f0ed; box-sizing: border-box;}
-.notice > div .top > div h2 { padding: 0 0 29px; font-size: 17px; color: #000; text-align: center; line-height: 100%;}
-.notice > div .top > div div { padding: 0 0 10px;}
-.notice > div .top > div select,
-.notice > div .top > div input { width: 100%; height: 45px; border: none; text-indent: 20px;}
-.notice > div .top > div input::-webkit-input-placeholder { color: #949394; font-size: 14px;}
-.notice > div .top > div a { display: block; margin: 20px 0 0; height: 45px; background: #2d5b79; line-height: 45px; text-align: center; color: #fff; font-size: 15px;}
-.notice article { padding: 20px 0 0;}
-.notice article > div { float: left; position: relative;width: 580px; background: #f2f0ed;}
-.notice article > div a { font-size: 16px; color:#424241;}
-.notice article > div a p { font-size: 12px; color:#979797;}
-.notice article > div h2 { height: 77px; border-bottom: 1px solid #fff; line-height: 77px; font-size: 24px; color: #2d5b79; text-align: center;}
-.notice article > div > a { position: absolute; right:23px; top:24px; width: 30px; height: 30px;  background: url(../images/sp_com.png) no-repeat -196px -60px #fff;  border-radius: 30px; color:transparent;}
-.notice article > div.left ul li { float: left; padding: 35px; width: 50%; border-left: 1px solid #fff; box-sizing: border-box;}
-.notice article > div.left ul li:first-child { border-left: none;}
-.notice article > div.left ul li span { display: block; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 100%; }
-.notice article > div.left ul li p { padding: 22px 0 16px; line-height: 100%;}
-.notice article > div.left ul li div { line-height: 21px;}
-.notice article > div.right { float: right;}
-.notice article > div.right ul li {position: relative; border-bottom: 1px solid #fff;}
-.notice article > div.right ul li:last-child { border-bottom: none;}
-.notice article > div.right ul li a { display: block;overflow: hidden; width: 400px; height: 60px; line-height: 60px; text-indent: 30px; white-space: nowrap; text-overflow: ellipsis;}
-.notice article > div.right p { position: absolute; right: 30px; top: 0;}
+.notice > div .top > ul li:nth-child(1) a{background: url(../images/bg_key_link01.png) no-repeat;}
+.notice > div .top > ul li:nth-child(2) a{background: url(../images/bg_key_link02.png) no-repeat; color: #000;}
+.notice > div .top > ul li:nth-child(3) a{background: url(../images/bg_key_link03.jpg) no-repeat;}
 
-.banner { padding:55px 0; background: url(../images/bg_main_business.jpg) no-repeat center top;}
-.banner ul { display: flex; width:1180px; margin: 0 auto;}
-.banner ul li { flex:1; padding: 0 0 0 20px;}
-.banner ul li:first-child { padding: 0;}
-.banner ul li a { display: block; padding: 303px 0 0; height:390px;  font-size: 14px; color:#3e413d; text-align: center; box-sizing: border-box;}
-.banner ul li a strong { display: block;font-size: 23px; color:#000; }
-.banner ul li:nth-child(1) a { background: url(../images/bg_business_link01.jpg) no-repeat;}
-.banner ul li:nth-child(2) a { background: url(../images/bg_business_link02.jpg) no-repeat;}
-.banner ul li:nth-child(3) a { background: url(../images/bg_business_link03.jpg) no-repeat;}
-.banner ul li:nth-child(4) a { background: url(../images/bg_business_link04.jpg) no-repeat;}
+/*.notice div .top > ul li a 이렇게 써도 된다고... 개취 */
 
-footer .top { background: #383f43;}
-footer .top > div { width: 1180px; margin: 0 auto; padding: 13px 0;}
-footer .top > div ul { float: left;}
-footer .top > div ul li { float: left; position: relative; padding: 0 19px 0 0;}
-footer .top > div ul li:after {content: ""; position: absolute; right: 9px; top: 50%; margin-top: -4px; width: 1px; height: 8px; background: #70767a;}
-footer .top > div ul li a { color:#fff; font-size: 13px; line-height: 45px;}
-footer .top > div ul li:last-child:after { display: none;}
-footer .top > div div { float: right;}
-footer .top > div div p { display: inline-block; width: 242px; height: 45px;background: #2a3033; color:#fff; text-align: center; line-height: 45px; font-size: 13px;}
-footer .top > div div p strong { padding: 0 0 0 15px; font-size: 20px;}
-footer .top > div div select { padding: 0 0 0 21px; width: 200px; height: 44px; color:#191919; font-size:12px; box-sizing: border-box; border:none; vertical-align:3px;}
+.notice > div .top > div { float: left; width: 280px; height: 280px;
+    background: #fef0ed; padding: 36px 26px 0; box-sizing: border-box;
+    padding: 0 0 29px;
+}
+.notice > div .top > div h2 { font-size: 17px; color: #000; text-align: center; line-height: 100%;
 
-footer .btm { padding: 40px 0 44px; background: #4c5459; text-align: center;}
-footer .btm p {  display: inline-block; width:131px; height:51px; background: url(../images/sp_com.png) no-repeat -150px 0; color:transparent;}
-footer .btm ul { padding: 32px 0 14px; }
-footer .btm li { display: inline-block; position: relative; padding: 0 10px; color:#fff; font-size:14px;}
-footer .btm li:after {content: ""; position: absolute; right: 0; top: 50%; margin-top: -4px; width: 1px; height: 8px; background: #70767a;}
-footer .btm address { font-size: 14px; color:#fff;}
+}
+.notice > div .top > div select { width: 100%; height: 49px; border: none;}
+.notice > div .top > div input{ width: 100%; height: 45px; border: none; }
+.notice > div .top > div input::-webkit-input-placeholder { width: 100%; height: 45px; border: none; }
 
-/* slide */
-.slide .prev,
-.slide .next { display: block; position: absolute; top:50%; z-index: 10; width: 25px; height: 47px; transform: translateY(-50%); background: url(../images/sp_com.png) no-repeat; color: transparent;}
-.slide .prev { left: 82px; background-position: -128px -60px;}
-.slide .next { right: 82px; background-position: -158px -60px;}
-.slide .control {position: absolute; left: 0; bottom: 55px; width: 100%; text-align: center;}
-.slide .control > div { display: inline-block; position: relative; padding: 0 45px 0 0;}
-.slide .control > div > div  { position: absolute; right: 0;}
-.slide .control > div > div a { overflow: hidden;display: inline-block; margin: 0 0 0 7px; width: 8px; height: 9px; background: url(../images/sp_com.png) no-repeat; opacity: 0.5;}
-.slide .control > div > div a.on { opacity: 1;}
-.slide .control > div > div a.play { background-position: -108px -72px;}
-.slide .control > div > div a.pause { background-position: -108px -60px;}
-.slide .control ul { display: inline-block; position: relative; top: -7px; font-size: 0;}
-.slide .control li { display: inline-block; padding: 0 3px;}
-.slide .control li.on a { background: #fff;}
-.slide .control li a { display: block; width: 50px; height: 3px; background:rgba(255,255,255,0.5); border: none;}
-.slide .control a { color: transparent;}
-
-
-
-
+/* placeholder는 webkit-placehoder로 잡아야지만 속성이 잡힘*/
 
 
 
